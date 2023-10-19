@@ -17,11 +17,9 @@ class EventFactory extends Factory
      */
     public function definition(): array
     {
-        $occasion = Occasion::all()->pluck('id')->toArray();
         return [
             'name' => fake()->company(),
             'total_places' => fake()->numberBetween(20, 32),
-            'occasion_id' => fake()->randomElement($occasion)
         ];
     }
 }

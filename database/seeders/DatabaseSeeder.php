@@ -15,12 +15,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-        Place::factory(80)->create();
+        Occasion::factory(8)
+            ->has(Event::factory(rand(2,4))
+                ->has(Place::factory(rand(15, 25)))
+            )->create();
     }
 }

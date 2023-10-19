@@ -16,12 +16,11 @@ class PlaceFactory extends Factory
      */
     public function definition(): array
     {
+        $count = 1;
         return [
             'number' => fake()->phoneNumber(),
-            'event_id' => random_int(1, 40),
             'name' => fake()->name(),
-            'place_number' => fake()->numberBetween(1,15)
-
+            'place_number'  => $count++
         ];
     }
 }

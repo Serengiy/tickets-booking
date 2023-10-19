@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('places', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('event_id');
-            $table->unsignedBigInteger('place_number');
+            $table->foreignId('event_id')->index()->constrained('events')->cascadeOnDelete();
+            $table->unsignedInteger('place_number');
             $table->unsignedBigInteger('number');
             $table->string('name');
             $table->timestamps();

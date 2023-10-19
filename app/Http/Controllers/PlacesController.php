@@ -19,6 +19,12 @@ class PlacesController extends Controller
     }
 
     public function book(Event $event, $place){
+        if($place > $event->total_places){
+            abort(404);
+        }
+        if($this->isPlaceBooked($event, $place)){
+            abort(404);
+        }
         return view('place_booking', [
             'place' => $place,
             'event' =>$event,
@@ -33,5 +39,11 @@ class PlacesController extends Controller
         }
         Place::create($data);
         return redirect('/')->with('alert', 'The place is booked');
+    }
+
+
+    private function isPlaceBooked($event, $place): int
+    {
+        return Place::query()->where('event_id', $event->id)->where('place_number', $place)->exists();
     }
 }
